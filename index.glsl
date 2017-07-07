@@ -1,4 +1,6 @@
-#define PI 3.141592653589793
+#ifndef M_PI
+#define M_PI 3.1415926535897932384626433832795
+#endif
 
 float wardSpecular(
   vec3 lightDirection,
@@ -22,7 +24,7 @@ float wardSpecular(
   float XdotH = dot(fiberParallel, H);
   float YdotH = dot(fiberPerpendicular, H);
 
-  float coeff = sqrt(NdotL/NdotR) / (4.0 * PI * shinyParallel * shinyPerpendicular); 
+  float coeff = sqrt(NdotL/NdotR) / (4.0 * M_PI * shinyParallel * shinyPerpendicular); 
   float theta = (pow(XdotH/shinyParallel, 2.0) + pow(YdotH/shinyPerpendicular, 2.0)) / (1.0 + NdotH);
 
   return coeff * exp(-2.0 * theta);
